@@ -78,7 +78,7 @@ const LoginScreen = ({navigation}) => {
               <View style={{ height: 10 }}></View>
               <Formik
                 validationSchema={loginSchema}
-                initialValues={{ email: 'phong.do@gmail.com', password: '123123' }}
+                initialValues={{ email: '', password: '' }}
                 onSubmit={handleSubmitFormik}>
                 {({ values, handleSubmit, handleChange, errors }) => (
                   <>

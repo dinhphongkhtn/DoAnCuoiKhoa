@@ -89,6 +89,10 @@ const ProductSearching = ({ route, navigation }) => {
                 paddingHorizontal: 5,
                 height: 40
             }} onPress={() => { navigation.navigate('ProductSearching') }}>
+                 <TouchableOpacity onPress={() => { navigation.goBack() }}>
+                    <Ionicons name='arrow-back-sharp' size={40}></Ionicons>
+                </TouchableOpacity>
+
                 <TextInput style={{ color: 'gray', width: '90%' }}
                     value={keyWord} autoFocus
                     onChangeText={text => { setkeyWord(text) }}

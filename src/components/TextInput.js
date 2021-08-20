@@ -64,7 +64,7 @@ const TextInput = props => {
         }
     }
 useEffect(() => {
-    if(value)
+    if(!value)
     {
 
     }else{

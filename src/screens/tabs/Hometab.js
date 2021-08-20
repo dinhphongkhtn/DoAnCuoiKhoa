@@ -57,7 +57,7 @@ const Hometab = ({ navigation }) => {
 
     const renderSearchBar = () => {
         return (
-            <View style={{
+            <TouchableOpacity style={{
                 flexDirection: 'row',
                 justifyContent: 'space-between',
                 backgroundColor: 'white',
@@ -65,19 +65,19 @@ const Hometab = ({ navigation }) => {
                 alignItems: 'center',
                 paddingHorizontal: 5,
                 height: 40
-            }} onPress={() => { navigation.navigate('ProductSearching') }}>
-                <TextInput style={{ color: 'gray', width: '90%' }}
-                    value={keyWord}
-                    onChangeText={text => { setkeyWord(text) }}
-                    onFocus={()=>{  navigation.navigate('ProductSearching', { searchKeyWord: keyWord }) }}
-                    placeholder='Search'
-                ></TextInput>
+            }} onPress={() => { navigation.navigate('ProductSearching',{searchKeyWord: keyWord}) }}>
+                <Text style={{ color: 'gray', width: '90%' }}
+                    // value={keyWord}
+                    // onChangeText={text => { setkeyWord(text) }}
+                    // onFocus={()=>{  navigation.navigate('ProductSearching', { searchKeyWord: keyWord }) }}
+                    // placeholder='Search'
+                >Search</Text>
                 <TouchableOpacity onPress={() => {
                     navigation.navigate('ProductSearching', { searchKeyWord: keyWord })
                 }}>
                     <Ionicons name='search' size={25} color='gray'></Ionicons>
                 </TouchableOpacity>
-            </View>
+            </TouchableOpacity>
 
         )
     }

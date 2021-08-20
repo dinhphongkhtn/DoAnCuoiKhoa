@@ -4,12 +4,13 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { LoginScreen, SignupScreen, HomeScreen, ProductDetail } from '../screens';
 import { getAccessToken } from '../Utils/storage';
 import { getAccessTokenSelector } from '../redux/selectors/loginSelector';
-import { useSelector,useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import HomeNavigator from "./HomeNavigator";
 import OrderDetail from '../screens/Orders/OrderDetail.js';
 import ProductSearching from '../screens/Products/ProductSearching';
 import Orders from '../screens/Orders';
 import UserProfile from '../screens/UserScreens/userProfile';
+import { getUserProfile } from '../apis/userLoginApi';
 const Stack = createStackNavigator();
 
 const RootNavigation = () => {
@@ -30,17 +31,25 @@ const RootNavigation = () => {
 
   }, [])
 
-useEffect(() => {
-  
-  if (accessToken) {
-    setIsLogin(true);
-  } else {
-    setIsLogin(false);
-  }
-  
-}, [accessToken]) 
+  useEffect(() => {
 
-  console.log(isLogin);
+    if (accessToken) {
+      getUserProfile(accessToken)
+        .then(res => {
+          if (res.data.statusCode !== 200) {
+            setIsLogin(false);
+          }
+
+        })
+        .catch(error => { setIsLogin(false); })
+      setIsLogin(true);
+    } else {
+      setIsLogin(false);
+    }
+
+  }, [accessToken])
+
+  // console.log(isLogin);
 
   return (
     <NavigationContainer>
@@ -48,12 +57,12 @@ useEffect(() => {
         {
           isLogin ? (
             <>
-            <Stack.Screen name="HomeScreen" component={HomeNavigator} />
-            <Stack.Screen name="ProductDetail" component={ProductDetail} />
-            <Stack.Screen name="OrderDetail" component={OrderDetail} />
-            <Stack.Screen name="OrderScreen" component={Orders} />
-            <Stack.Screen name="ProductSearching" component={ProductSearching} />
-            <Stack.Screen name="UserProfile" component={UserProfile} />
+              <Stack.Screen name="HomeScreen" component={HomeNavigator} />
+              <Stack.Screen name="ProductDetail" component={ProductDetail} />
+              <Stack.Screen name="OrderDetail" component={OrderDetail} />
+              <Stack.Screen name="OrderScreen" component={Orders} />
+              <Stack.Screen name="ProductSearching" component={ProductSearching} />
+              <Stack.Screen name="UserProfile" component={UserProfile} />
             </>
           ) :
             (
