@@ -1,0 +1,2 @@
+export const SET_ACCESS_TOKEN = 'SET_ACCESS_TOKEN';
+export const GET_USER_PROFILE = 'GET_USER_PROFILE';
