@@ -93,7 +93,7 @@ const ProductSearching = ({ route, navigation }) => {
                     <Ionicons name='arrow-back-sharp' size={40}></Ionicons>
                 </TouchableOpacity>
 
-                <TextInput style={{ color: 'gray', width: '90%' }}
+                <TextInput style={{ color: 'gray', width: '80%' }}
                     value={keyWord} autoFocus
                     onChangeText={text => { setkeyWord(text) }}
                     placeholder='Search'

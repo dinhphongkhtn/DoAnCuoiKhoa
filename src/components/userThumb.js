@@ -63,10 +63,12 @@ const UserThumb = () => {
 const styles = StyleSheet.create({
     container: {
         justifyContent: 'center',
+        
         // alignItems:'center'
     },
     avatarContainer: {
-        padding: 3
+        padding: 3,
+        backgroundColor:'white'
     },
     imgAvatar: {
         width: 80,

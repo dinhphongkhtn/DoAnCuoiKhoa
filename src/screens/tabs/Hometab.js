@@ -40,11 +40,11 @@ const Hometab = ({ navigation }) => {
 
         getAllCategory()
             .then(res => {
-                
+
                 dispatch({ type: GET_CATEGORY, payload: res.data.content })
             })
             .catch(error => { console.log(error); })
-      
+
     }, [])
 
     // console.log('HomeTab');
@@ -64,13 +64,14 @@ const Hometab = ({ navigation }) => {
                 borderRadius: 10,
                 alignItems: 'center',
                 paddingHorizontal: 5,
-                height: 40
-            }} onPress={() => { navigation.navigate('ProductSearching',{searchKeyWord: keyWord}) }}>
+                height: 40,
+                marginHorizontal:10
+            }} onPress={() => { navigation.navigate('ProductSearching', { searchKeyWord: keyWord }) }}>
                 <Text style={{ color: 'gray', width: '90%' }}
-                    // value={keyWord}
-                    // onChangeText={text => { setkeyWord(text) }}
-                    // onFocus={()=>{  navigation.navigate('ProductSearching', { searchKeyWord: keyWord }) }}
-                    // placeholder='Search'
+                // value={keyWord}
+                // onChangeText={text => { setkeyWord(text) }}
+                // onFocus={()=>{  navigation.navigate('ProductSearching', { searchKeyWord: keyWord }) }}
+                // placeholder='Search'
                 >Search</Text>
                 <TouchableOpacity onPress={() => {
                     navigation.navigate('ProductSearching', { searchKeyWord: keyWord })
@@ -84,26 +85,29 @@ const Hometab = ({ navigation }) => {
 
     // console.log(products);
     return (
-        <ContainerView>
+        <View style={{flex:1}}>
             <View style={styles.userContainer}>
                 <UserThumb></UserThumb>
             </View>
-            {renderSearchBar()}
-            <View style={styles.productContainer}>
-                <Text style={styles.textHeader}>Sneakers</Text>
-                <Products horizontal={true} navigation={navigation}></Products>
-            </View>
-            <View style={styles.featuredContainer}>
-                <Text style={styles.textHeader}>Featured</Text>
-                <FlatList numColumns={2}
-                    showsVerticalScrollIndicator={false}
-                    data={featuredProducts}
-                    renderItem={renderProduct}
-                    keyExtractor={item => item.id}
-                    contentContainerStyle={styles.productContainerItemStyle}
-                ></FlatList>
-            </View>
-        </ContainerView>
+                {renderSearchBar()}
+            <ContainerView style={{height:'95%'}}>
+
+                <View style={styles.productContainer}>
+                    <Text style={styles.textHeader}>Sneakers</Text>
+                    <Products horizontal={true} navigation={navigation}></Products>
+                </View>
+                <View style={styles.featuredContainer}>
+                    <Text style={styles.textHeader}>Featured</Text>
+                    <FlatList numColumns={2}
+                        showsVerticalScrollIndicator={false}
+                        data={featuredProducts}
+                        renderItem={renderProduct}
+                        keyExtractor={item => item.id}
+                        contentContainerStyle={styles.productContainerItemStyle}
+                    ></FlatList>
+                </View>
+            </ContainerView>
+        </View>
     )
 }
 const styles = StyleSheet.create({
@@ -114,12 +118,14 @@ const styles = StyleSheet.create({
         padding: 10
     },
     userContainer: {
-        height: '15%',
+        height: '16%',
         borderRadius: 10,
-        marginBottom: 5
+        marginBottom: 5,
+        backgroundColor:'white',
+        justifyContent:'center'
     },
     productContainer: {
-        height: '40%',
+        height: '49%',
         // backgroundColor:'white'
     },
     productContainerItemStyle: {
@@ -127,8 +133,7 @@ const styles = StyleSheet.create({
         alignSelf: 'flex-start'
     },
     featuredContainer: {
-        height: '35%'
-
+      height:'50%'
     },
     textHeader: {
         fontWeight: 'bold',
